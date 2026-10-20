@@ -13,24 +13,23 @@
   <a class="skip" href="#main">Skip to content</a>
   <div class="site-shell">
     <header class="header">
-      <a class="brand" href="#home">Thomas Connell<span aria-hidden="true">.</span></a>
       <nav aria-label="Main navigation"><a class="nav-link" href="#home" data-page="home" aria-current="page">About</a><a class="nav-link" href="#portfolio" data-page="portfolio">Portfolio <span aria-hidden="true">↗</span></a></nav>
     </header>
     <main id="main">
       <section id="home-view" class="view home" aria-labelledby="home-heading">
         <div class="intro">
-          <h1 id="home-heading" tabindex="-1">Thomas<br><span>Connell.</span></h1>
+          <figure class="portrait-wrap">
+            <div class="portrait-frame">
+              <img src="assets/thomas-connell.jpg" alt="Profile portrait" width="707" height="1028" fetchpriority="high">
+            </div>
+          </figure>
+          <h1 id="home-heading" tabindex="-1">Thomas Connell</h1>
           <p class="degree">Information Science · CU Boulder</p>
           <p class="bio">I’m interested in design, technology, and making things easier to use.</p>
           <p class="personal">Outside of school, I’m usually skiing, gaming, or working on my PC.</p>
           <div class="actions"><a class="button primary" href="#portfolio">View my portfolio <span aria-hidden="true">↗</span></a></div>
         </div>
-        <figure class="portrait-wrap">
-          <div class="portrait-frame">
-            <img src="assets/thomas-connell.jpg" alt="Thomas Connell" width="707" height="1028" fetchpriority="high">
-          </div>
-          <figcaption><span>Thomas Connell</span><span>Boulder, CO <span aria-hidden="true">↗</span></span></figcaption>
-        </figure>
+
       </section>
       <section id="portfolio-view" class="view portfolio" aria-labelledby="portfolio-heading" hidden>
         <div class="work-heading"><div><p class="eyebrow">A few things I’ve worked on</p><h1 id="portfolio-heading" tabindex="-1">Selected work<span>.</span></h1></div><span class="work-count">02 projects</span></div>
@@ -46,7 +45,7 @@
         </div>
       </section>
     </main>
-    <footer><span>© <span id="year">2026</span> Thomas Connell</span></footer>
+    <footer><span>© <span id="year">2026</span></span></footer>
   </div>
   <dialog id="project-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-category" class="eyebrow"></span><button class="close-dialog" aria-label="Close project">×</button></div><h2 id="dialog-title"></h2><p id="dialog-description"></p><div class="dialog-details" id="dialog-details"></div><p class="dialog-note" id="dialog-note"></p></dialog>
 </body>
