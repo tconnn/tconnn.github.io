@@ -152,7 +152,12 @@ footer {
 
 /* SQL portfolio examples */
 .sql-project {
-  max-width: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 .sql-project > h2 {
   margin-bottom: 26px;
@@ -181,6 +186,7 @@ footer {
 .query-image img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
 }
 .query-example figcaption p {
