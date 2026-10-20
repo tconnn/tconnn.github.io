@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Thomas Connell. Information Science student at CU Boulder. A portfolio of research and design work.">
+  <meta name="theme-color" content="#101113">
+  <title>Thomas Connell | Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="header">
+      <a class="brand" href="#home">Thomas Connell<span aria-hidden="true">.</span></a>
+      <nav aria-label="Main navigation"><a class="nav-link" href="#home" data-page="home" aria-current="page">About</a><a class="nav-link" href="#portfolio" data-page="portfolio">Portfolio <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="main">
+      <section id="home-view" class="view home" aria-labelledby="home-heading">
+        <div class="intro">
+          <h1 id="home-heading" tabindex="-1">Thomas<br><span>Connell.</span></h1>
+          <p class="degree">Information Science · CU Boulder</p>
+          <p class="bio">I’m interested in design, technology, and making things easier to use.</p>
+          <p class="personal">Outside of school, I’m usually skiing, gaming, or working on my PC.</p>
+          <div class="actions"><a class="button primary" href="#portfolio">View my portfolio <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <figure class="portrait-wrap">
+          <div class="portrait-frame">
+            <img src="assets/thomas-connell.jpg" alt="Thomas Connell" width="707" height="1028" fetchpriority="high">
+          </div>
+          <figcaption><span>Thomas Connell</span><span>Boulder, CO <span aria-hidden="true">↗</span></span></figcaption>
+        </figure>
+      </section>
+      <section id="portfolio-view" class="view portfolio" aria-labelledby="portfolio-heading" hidden>
+        <div class="work-heading"><div><p class="eyebrow">A few things I’ve worked on</p><h1 id="portfolio-heading" tabindex="-1">Selected work<span>.</span></h1></div><span class="work-count">02 projects</span></div>
+        <div class="projects">
+          <article class="project-card">
+            <button class="project-visual names-visual" data-project="username" aria-label="Read about Username Creator and Checker"><span class="visual-index" aria-hidden="true">01</span><div class="username-demo" aria-hidden="true"><span class="demo-label">Find your name.</span><div class="demo-search">grove <span>↗</span></div><div class="demo-chips"><span>grove</span><span>moss</span><span>fern</span></div><div class="demo-row"><span>Gaming</span><span class="available">Available</span></div><div class="demo-row"><span>Social</span><span class="taken">Taken</span></div><div class="demo-row"><span>Work</span><span class="available">Available</span></div><small>Concept illustration · example results</small></div><span class="visual-arrow" aria-hidden="true">↗</span></button>
+            <div class="project-meta"><span>Research & design</span><span>Course project</span></div><button class="project-title" data-project="username">Username Creator and Checker <span aria-hidden="true">↗</span></button><p>A simpler way to check a username and find related ideas.</p>
+          </article>
+          <article class="project-card">
+            <button class="project-visual paths-visual" data-project="paths" aria-label="Read about Paths after Information Science"><span class="visual-index" aria-hidden="true">02</span><div class="paths-demo" aria-hidden="true"><span class="path-caption">ONE DEGREE. DIFFERENT DIRECTIONS.</span><span class="path-heading">What’s<br>next?</span><div class="path-options"><span>Jobs ↗</span><span>Internships ↗</span><span>Grad school ↗</span></div></div><span class="visual-arrow" aria-hidden="true">↗</span></button>
+            <div class="project-meta"><span>Community based design</span><span>In progress</span></div><button class="project-title" data-project="paths">Paths after Information Science <span aria-hidden="true">↗</span></button><p>Helping students make sense of the options after their degree.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer><span>© <span id="year">2026</span> Thomas Connell</span></footer>
+  </div>
+  <dialog id="project-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-category" class="eyebrow"></span><button class="close-dialog" aria-label="Close project">×</button></div><h2 id="dialog-title"></h2><p id="dialog-description"></p><div class="dialog-details" id="dialog-details"></div><p class="dialog-note" id="dialog-note"></p></dialog>
+</body>
+</html>
