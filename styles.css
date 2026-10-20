@@ -149,3 +149,42 @@ footer {
     padding: 20px;
   }
 }
+
+/* SQL portfolio examples */
+.sql-project {
+  max-width: none;
+}
+.sql-project > h2 {
+  margin-bottom: 26px;
+}
+.query-example + .query-example {
+  margin-top: 36px;
+  padding-top: 30px;
+  border-top: 1px solid #34363c;
+}
+.query-example h3 {
+  font-size: 19px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.query-example figure {
+  margin: 0;
+}
+.query-image {
+  display: block;
+  border: 1px solid #484b52;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.query-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.query-example figcaption p {
+  margin: 20px 0 0;
+  color: #c8cbd0;
+  line-height: 1.8;
+}

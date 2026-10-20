@@ -19,9 +19,30 @@
     </header>
     <main id="main" class="portfolio">
       <h1>Portfolio</h1>
-      <article class="project" aria-labelledby="sql-title">
+      <article class="project sql-project" aria-labelledby="sql-title">
         <h2 id="sql-title">SQL Queries</h2>
-        <p class="project-note">Queries and explanations coming soon.</p>
+        <section class="query-example">
+          <h3>Doctor admissions</h3>
+          <figure>
+            <a class="query-image" href="assets/sql-doctor-admissions.jpg" target="_blank" rel="noopener" aria-label="Open doctor admissions screenshot at full size">
+              <img src="assets/sql-doctor-admissions.jpg" alt="SQL query joining doctors and admissions, with results showing total admissions and unique patients for each doctor." width="914" height="862" loading="lazy">
+            </a>
+            <figcaption>
+              <p>I wanted to see which doctors had the most admissions and how many different patients they treated. I used JOIN to connect the doctors and admissions tables using the doctor ID. I counted all admissions and used DISTINCT to count each patient once for each doctor, even if they were admitted more than once. I sorted the results so the doctors with the most admissions show up first.</p>
+            </figcaption>
+          </figure>
+        </section>
+        <section class="query-example">
+          <h3>Salaries by department and job</h3>
+          <figure>
+            <a class="query-image" href="assets/sql-department-salaries.jpg" target="_blank" rel="noopener" aria-label="Open salaries by department and job screenshot at full size">
+              <img src="assets/sql-department-salaries.jpg" alt="SQL query joining employees, departments, and jobs, with results showing employee counts and average salaries for each department and job." width="1025" height="873" loading="lazy">
+            </a>
+            <figcaption>
+              <p>For this query, I wanted to compare salaries for different jobs within each department. I used an implicit join to connect the employees, departments, and jobs tables by matching their IDs in WHERE. I grouped employees by department and job title to show how many people are in each group and their average salary. I rounded the averages to two decimal places and listed departments alphabetically, with the highest average salaries first within each department.</p>
+            </figcaption>
+          </figure>
+        </section>
       </article>
     </main>
     <footer>© 2026</footer>
