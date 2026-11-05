@@ -26,7 +26,7 @@ main#app { max-width: none; margin: 0; padding: 0; }
 #app [data-nav-id^="results/result-list/"] > .olli-node-label { white-space: pre-line; font-size: 16px; line-height: 28px; }
 #app [data-nav-id^="results/result-list/"] > .olli-node-label::first-line { font-size: 20px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 #app [data-nav-id^="results/result-list/"][aria-selected="true"] { border: 2px solid #2b6ed4; background: #f0f7ff; }
-#app .olli-tree > [data-nav-id$="-page"] > .olli-node-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#app .olli-tree > [data-nav-id$="-page"][aria-expanded="true"] > .olli-node-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 #app .olli-tree > [data-nav-id$="-page"] > .olli-tree-group { margin-top: 0; }
 #app [data-nav-id$="-page-back"] > .olli-node-label { font-size: 14px; line-height: 20px; text-decoration: underline; cursor: pointer; }
 #app [data-nav-id$="-page-title"] > .olli-node-label { font-size: 30px; line-height: 42px; font-weight: 700; }

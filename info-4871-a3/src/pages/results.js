@@ -43,7 +43,7 @@ export function resultsNodes() {
     list.children.push(p.id);
     nodes.push({
       id: p.id,
-      description: `${p.title} →\n$${p.price} • ${p.pieces} pieces`,
+      description: `${p.title}.\n$${p.price}. ${p.pieces} pieces.`,
       navigation: { Enter: `${p.id}-page-title` },
     });
   }

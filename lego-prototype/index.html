@@ -5,29 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:," />
     <title>Shopping prototype</title>
-    <script type="module" crossorigin src="/lego-prototype/assets/index-BOxZ0ucx.js"></script>
+    <script type="module" crossorigin src="/lego-prototype/assets/index-DHLCCiFb.js"></script>
     <link rel="stylesheet" crossorigin href="/lego-prototype/assets/index-CwIZ1hFx.css">
-  <link rel="stylesheet" href="/lego-prototype/wireframe.css">
-</head>
+    <link rel="stylesheet" href="/lego-prototype/wireframe.css?v=3">
+  </head>
   <body>
     <div class="wireframe">
-<p class="step results-step">01 / SEARCH RESULTS</p>
-<p class="step product-step">02 / PRODUCT DETAILS</p>
-<main id="app"></main>
-<aside class="notes">
-<h2>Screen reader notes</h2>
-<div class="results-notes">
-<p>The screen reader reads each set's name, price, and piece count.</p>
-<p>↑/↓ move between products. Enter opens a product.</p>
-<p>Keep keyboard focus visible.</p>
-</div>
-<div class="product-notes">
-<p>The screen reader reads each set's name, price, and piece count.</p>
-<p>“Description, collapsed. Press Enter to expand.”</p>
-<p>↑/↓ move between sections. Enter selects. Back to results returns.</p>
-</div>
-</aside>
-</div>
+      <p class="step results-step">01 / SEARCH RESULTS</p>
+      <p class="step product-step">02 / PRODUCT DETAILS</p>
+      <main id="app"></main>
+      <aside class="notes">
+        <h2>Screen reader notes</h2>
+        <p>The screen reader reads each set's name, price, and piece count.</p>
+        <p>Down enters a group. Up leaves it. Left/Right move between items.</p>
+        <div class="results-notes">
+          <p>Press Enter on a set to open its product page.</p>
+        </div>
+        <div class="product-notes">
+          <p>Press Enter on a section to read its details. Backspace returns to results.</p>
+        </div>
+      </aside>
+    </div>
     <script>
       // Shows JavaScript mistakes, such as a missing comma, on the page
       // instead of leaving it blank.
@@ -56,6 +54,5 @@
           '<p>Fix the mistake and save the file. The page reloads on its own.</p>';
       });
     </script>
-    <script src="/lego-prototype/wireframe.js?v=2"></script>
-</body>
+  </body>
 </html>

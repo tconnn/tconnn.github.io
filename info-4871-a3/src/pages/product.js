@@ -39,7 +39,7 @@ export function productNodes(p) {
 
   nodes.push({
     id: `${p.id}-page-back`,
-    description: '← Back to results',
+    description: 'Back to results',
     navigation: { Enter: p.id },
   });
   nodes.push({ id: `${p.id}-page-title`, description: p.title });
