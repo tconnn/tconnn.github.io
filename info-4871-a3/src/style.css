@@ -1,0 +1,38 @@
+/* =============================================================================
+   YOU DO NOT NEED TO EDIT THIS FILE.
+   It only changes how the page looks, and screen readers do not read it.
+   ============================================================================= */
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  background: #fff;
+  color: #111;
+}
+main {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.tree {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+.keys table {
+  border-collapse: collapse;
+}
+.keys td,
+.keys th {
+  text-align: left;
+  padding: 0.25rem 0.75rem 0.25rem 0;
+  vertical-align: top;
+}
+.keys tbody.node-keys tr:last-child td {
+  padding-bottom: 0.75rem;
+}
+.error {
+  color: #a00;
+  white-space: pre-wrap;
+}

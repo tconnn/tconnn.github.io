@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>Shopping prototype</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main id="app"></main>
+    <script>
+      // Shows JavaScript mistakes, such as a missing comma, on the page
+      // instead of leaving it blank.
+      window.addEventListener('error', function (e) {
+        var app = document.getElementById('app');
+        if (!app) return;
+        var esc = function (s) {
+          return String(s).replace(/[&<>"]/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+          });
+        };
+        var file = e.filename ? new URL(e.filename).pathname.replace(/^\//, '') : '';
+        var where = file ? file + (e.lineno ? ', line ' + e.lineno : '') : 'one of your files';
+        var syntax = /Unexpected|Invalid or unexpected token|missing/.test(e.message);
+        var badField = /undefined|null|not iterable|is not a function/.test(e.message);
+        app.innerHTML =
+          '<h1>There is a mistake in your code</h1>' +
+          '<p>Where: ' + esc(where) + '</p>' +
+          '<pre class="error">' + esc(e.message) + '</pre>' +
+          (syntax
+            ? '<p>This often means a missing comma, quote mark, or bracket on that line or the line above it.</p>'
+            : '') +
+          (badField
+            ? '<p>This often means a field name is misspelled, or a product in src/data.js is missing that field. Check the spelling against src/data.js.</p>'
+            : '') +
+          '<p>Fix the mistake and save the file. The page reloads on its own.</p>';
+      });
+    </script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
