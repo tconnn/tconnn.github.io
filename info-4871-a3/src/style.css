@@ -20,6 +20,22 @@ main {
   border-radius: 4px;
   padding: 0.5rem;
 }
+.tree [role="treeitem"]:focus {
+  outline: 3px solid #165db5;
+  outline-offset: 2px;
+  background: #eaf2ff;
+}
+#keyboard-start {
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#keyboard-start:focus-visible {
+  outline: 3px solid #165db5;
+  outline-offset: 3px;
+}
 .keys table {
   border-collapse: collapse;
 }
