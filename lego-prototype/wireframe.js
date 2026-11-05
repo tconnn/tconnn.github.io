@@ -43,10 +43,16 @@ document.addEventListener('click', function (event) {
   }, 0);
 });
 
-// A direct product-page link should show its sections immediately.
+// Direct links should show the whole screen immediately.
 window.addEventListener('load', function () {
   const item = document.querySelector('.olli-tree-item[tabindex="0"]');
-  if (item && item.getAttribute('data-nav-id').endsWith('-page')) {
+  if (!item) return;
+  const id = item.getAttribute('data-nav-id');
+  if (id === 'results') {
+    ['ArrowDown', 'ArrowRight', 'ArrowRight', 'ArrowDown'].forEach(function (key) {
+      sendKey(document.querySelector('.olli-tree-item[tabindex="0"]'), key);
+    });
+  } else if (id.endsWith('-page')) {
     sendKey(item, 'ArrowDown');
     sendKey(document.querySelector('.olli-tree-item[tabindex="0"]'), 'ArrowRight');
   }
