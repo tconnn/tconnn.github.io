@@ -35,12 +35,6 @@ main#app { max-width: none; margin: 0; padding: 0; }
 #app [data-nav-id$="-page-description"] > .olli-node-label,
 #app [data-nav-id$="-page-shipping"] > .olli-node-label,
 #app [data-nav-id$="-page-reviews"] > .olli-node-label { font-size: 20px; line-height: 28px; font-weight: 700; cursor: pointer; }
-#app [data-nav-id$="-page-description"] > .olli-node-label::after,
-#app [data-nav-id$="-page-shipping"] > .olli-node-label::after,
-#app [data-nav-id$="-page-reviews"] > .olli-node-label::after { content: " ▸"; font-size: 14px; }
-#app [data-nav-id$="-page-description"][aria-expanded="true"] > .olli-node-label::after,
-#app [data-nav-id$="-page-shipping"][aria-expanded="true"] > .olli-node-label::after,
-#app [data-nav-id$="-page-reviews"][aria-expanded="true"] > .olli-node-label::after { content: " ▾"; }
 #app [data-nav-id$="-page-description"] .olli-node-label,
 #app [data-nav-id$="-page-shipping"] .olli-node-label,
 #app [data-nav-id$="-page-reviews"] .olli-node-label { white-space: normal; }
