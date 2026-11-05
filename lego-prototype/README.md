@@ -23,11 +23,11 @@ Open the address printed in Terminal. If you already cloned this repository, pul
 
 Down enters a group. Up returns to its parent. Left and Right move between items in a group. Enter opens a set. Backspace returns to the same result.
 
-If the arrows stop responding, press Tab to reach Start keyboard navigation, then press Enter. A blue outline shows the item receiving your keyboard input. The arrow controls also resume the list when focus is on the page background or help text.
+Keyboard navigation is active as soon as the page opens. A blue outline shows the item receiving your keyboard input. The arrow controls automatically resume the list when focus is on the page background or help text.
 
 ## Test with VoiceOver
 
-Turn Quick Nav off with Left Arrow + Right Arrow together, then click or Tab into the first description. Browse a set, read its description, shipping, and sample reviews, then return to results. The VoiceOver listening test still needs to be completed before submitting.
+Turn Quick Nav off with Left Arrow + Right Arrow together, then use Down to enter the results. Browse a set, read its description, shipping, and sample reviews, then return to results. The VoiceOver listening test still needs to be completed before submitting.
 
 The LEGO design is in src/data.js, src/pages/results.js, and src/pages/product.js. Keyboard focus support is added in src/lib/olli-app.js, with focus outlines in src/style.css.
 

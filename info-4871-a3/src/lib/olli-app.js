@@ -20,7 +20,6 @@ const OLLI_STORAGE_KEY = 'olli:customization:v1';
 const DESCRIPTION_ONLY = { node: { role: 'node', recipe: [{ token: 'name', brevity: 'short' }] } };
 
 const BUILT_IN_KEYS = [
-  ['Tab, then Enter', 'Start or resume keyboard navigation.'],
   ['Down arrow', 'Go inside a list or section.'],
   ['Up arrow', 'Go back out of this section.'],
   ['Left / Right arrow', 'Move between sets, sections, or details.'],
@@ -148,8 +147,6 @@ export function startApp({ root, nodes, start }) {
     <div class="tree"></div>
     <section class="keys" aria-labelledby="keys-heading">
       <h2 id="keys-heading">Keyboard controls</h2>
-      <button type="button" id="keyboard-start" aria-describedby="keyboard-steps">Start keyboard navigation</button>
-      <p id="keyboard-steps">Press Tab to reach this button, then Enter. Use it to start or resume moving through the sets and sections.</p>
       <p>Using VoiceOver? Turn Quick Nav off by pressing the Left and Right arrow keys together.</p>
       <table>
         <thead><tr><th scope="col">Key</th><th scope="col">What it does</th></tr></thead>
@@ -185,7 +182,7 @@ export function startApp({ root, nodes, start }) {
   const focusByPage = new Map(); // page's top node id -> last focused position
   let pendingFocusId = null; // node to focus after the next page change
 
-  // A normal button gives keyboard users a clear way back into the list.
+  // Keep keyboard input on the currently selected item.
   const focusShopping = () => {
     if (!current) return null;
     const position = current.handle.getFocusedNavId();
@@ -193,7 +190,9 @@ export function startApp({ root, nodes, start }) {
     item?.focus();
     return item;
   };
-  root.querySelector('#keyboard-start').addEventListener('click', focusShopping);
+  window.addEventListener('focus', () => {
+    if (document.activeElement === document.body) focusShopping();
+  });
 
   const pageOf = (id) => index.pageRoots.find((r) => index.pages.get(r).has(id));
 
