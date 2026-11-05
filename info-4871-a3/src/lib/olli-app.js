@@ -20,12 +20,12 @@ const OLLI_STORAGE_KEY = 'olli:customization:v1';
 const DESCRIPTION_ONLY = { node: { role: 'node', recipe: [{ token: 'name', brevity: 'short' }] } };
 
 const BUILT_IN_KEYS = [
-  ['Down arrow', 'First child'],
-  ['Up arrow', 'Parent. On a node with two or more parents, Up lists them; Left and Right pick one, Up goes there.'],
-  ['Left / Right arrow', 'Previous / next sibling'],
-  ['Home / End', 'First / last sibling'],
-  ['Enter, Space', 'First child (unless a node binds the key)'],
-  ['Escape', 'Parent (unless a node binds the key)'],
+  ['Down arrow', 'Go inside a list or section.'],
+  ['Up arrow', 'Go back out of this section.'],
+  ['Left / Right arrow', 'Move between sets, sections, or details.'],
+  ['Home / End', 'Jump to the first or last item in this list.'],
+  ['Space', 'Go inside the selected section.'],
+  ['Escape', 'Go back out of this section, like Up.'],
 ];
 
 /**
@@ -146,9 +146,9 @@ export function startApp({ root, nodes, start }) {
   root.innerHTML = `
     <div class="tree"></div>
     <section class="keys" aria-labelledby="keys-heading">
-      <h2 id="keys-heading">Keys</h2>
+      <h2 id="keys-heading">Keyboard controls</h2>
       <table>
-        <thead><tr><th scope="col">Key</th><th scope="col">Goes to</th></tr></thead>
+        <thead><tr><th scope="col">Key</th><th scope="col">What it does</th></tr></thead>
         <tbody class="node-keys"></tbody>
         <tbody class="builtin-keys"></tbody>
       </table>
@@ -224,10 +224,12 @@ export function startApp({ root, nodes, start }) {
 
   const showKeys = () => {
     nodeKeysEl.innerHTML = [...activeBindings()]
-      .map(
-        ([key, target]) =>
-          `<tr><td>${escapeHtml(keyName(key))}</td><td>${escapeHtml(index.byId.get(target).description)}</td></tr>`,
-      )
+      .map(([key, target]) => {
+        let action = index.byId.get(target).description;
+        if (key === 'Enter') action = 'Open the selected set or action.';
+        if (key === 'Backspace') action = 'Return to the search results.';
+        return `<tr><td>${escapeHtml(keyName(key))}</td><td>${escapeHtml(action)}</td></tr>`;
+      })
       .join('');
   };
 

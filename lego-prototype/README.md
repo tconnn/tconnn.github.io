@@ -27,7 +27,7 @@ Down enters a group. Up returns to its parent. Left and Right move between items
 
 Turn Quick Nav off with Left Arrow + Right Arrow together, then click or Tab into the first description. Browse a set, read its description, shipping, and sample reviews, then return to results. The VoiceOver listening test still needs to be completed before submitting.
 
-Only src/data.js, src/pages/results.js, and src/pages/product.js were changed from the class starter. The other template files are included unchanged.
+The LEGO design is in src/data.js, src/pages/results.js, and src/pages/product.js. The keyboard-help wording is also customized in src/lib/olli-app.js.
 
 Reviews are made-up examples and Add to bag shows a demo message.
 
