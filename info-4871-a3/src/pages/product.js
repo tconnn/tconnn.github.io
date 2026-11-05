@@ -49,6 +49,7 @@ export function productNodes(p) {
   nodes.push(about);
 
   let lineCount = 1;
+  // Each description line becomes an item someone can move to.
   for (const line of p.description) {
     const lineId = `${p.id}-page-description-${lineCount}`;
     about.children.push(lineId);
@@ -74,6 +75,7 @@ export function productNodes(p) {
   nodes.push(reviews);
 
   let reviewCount = 1;
+  // Each sample review gets its own item too.
   for (const review of p.reviews) {
     const reviewId = `${p.id}-page-review-${reviewCount}`;
     reviews.children.push(reviewId);

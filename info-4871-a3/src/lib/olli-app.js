@@ -184,15 +184,10 @@ export function startApp({ root, nodes, start }) {
 
   // Keep keyboard input on the currently selected item.
   const focusShopping = () => {
-    if (!current) return null;
-    const position = current.handle.getFocusedNavId();
-    const item = treeEl.querySelector(`[data-nav-id="${CSS.escape(position)}"]`);
-    item?.focus();
+    const item = treeEl.querySelector('[role="treeitem"][tabindex="0"]');
+    if (item) item.focus();
     return item;
   };
-  window.addEventListener('focus', () => {
-    if (document.activeElement === document.body) focusShopping();
-  });
 
   const pageOf = (id) => index.pageRoots.find((r) => index.pages.get(r).has(id));
 
@@ -302,18 +297,16 @@ export function startApp({ root, nodes, start }) {
     true,
   );
 
-  // Resume the list if focus has moved to the page background or help text.
-  // Tab stays a normal browser control, and form controls keep their own keys.
-  document.addEventListener('keydown', (e) => {
-    if (!current || e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
-    if (e.target.closest?.('button, a, input, select, textarea, [contenteditable="true"]')) return;
-    if (e.target !== document.body && !e.target.closest?.('.keys')) return;
+  // If focus leaves the list, send navigation keys back to the selected item.
+  document.addEventListener('keydown', (event) => {
+    if (event.target !== document.body) return;
+    if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
     const keys = ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Enter', ' ', 'Escape', 'Backspace'];
-    if (!keys.includes(e.key)) return;
+    if (!keys.includes(event.key)) return;
     const item = focusShopping();
     if (!item) return;
-    e.preventDefault();
-    item.dispatchEvent(new KeyboardEvent('keydown', { key: e.key, bubbles: true, cancelable: true }));
+    event.preventDefault();
+    item.dispatchEvent(new KeyboardEvent('keydown', { key: event.key, bubbles: true, cancelable: true }));
   });
 
   const pageFromUrl = () => decodeURIComponent(location.hash.replace(/^#\/?/, ''));

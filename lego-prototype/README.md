@@ -6,6 +6,18 @@
 
 This is a simple screen reader shopping prototype for INFO 4871 Assignment 3, Part 2. It uses the class starter with three LEGO Botanicals sets.
 
+## How the code works
+
+| File | What it does |
+| --- | --- |
+| src/data.js | Stores the LEGO set details in a list. |
+| src/pages/results.js | Uses a for loop to make one result for each set. |
+| src/pages/product.js | Groups the description, shipping, reviews, and bag action. |
+
+Each node is a small object. Its id is its name, description is what gets read aloud, children lists the items inside it, and navigation connects a key to another item. The LEGO page code uses lists, objects, and basic loops.
+
+Most of the keyboard code comes from the class starter. A short added focus fix keeps the keys working after focus leaves the list.
+
 ## Run the source on your computer
 
 Use Node.js 22.12 or newer. Open Terminal and run:

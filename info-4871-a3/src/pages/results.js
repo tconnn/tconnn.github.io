@@ -34,6 +34,7 @@ export function resultsNodes() {
   nodes.push(resultsPage);
 
   let resultNumber = 1;
+  // Add one result for each LEGO set in data.js.
   for (const p of products) {
     resultsPage.children.push(p.id);
     nodes.push({
