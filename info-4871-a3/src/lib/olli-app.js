@@ -20,12 +20,12 @@ const OLLI_STORAGE_KEY = 'olli:customization:v1';
 const DESCRIPTION_ONLY = { node: { role: 'node', recipe: [{ token: 'name', brevity: 'short' }] } };
 
 const BUILT_IN_KEYS = [
-  ['Down arrow', 'Go inside a list or section.'],
-  ['Up arrow', 'Go back out of this section.'],
-  ['Left / Right arrow', 'Move between sets, sections, or details.'],
-  ['Home / End', 'Jump to the first or last item in this list.'],
-  ['Space', 'Go inside the selected section.'],
-  ['Escape', 'Go back out of this section, like Up.'],
+  ['Down arrow', 'First child'],
+  ['Up arrow', 'Parent. On a node with two or more parents, Up lists them; Left and Right pick one, Up goes there.'],
+  ['Left / Right arrow', 'Previous / next sibling'],
+  ['Home / End', 'First / last sibling'],
+  ['Enter, Space', 'First child (unless a node binds the key)'],
+  ['Escape', 'Parent (unless a node binds the key)'],
 ];
 
 /**
@@ -146,10 +146,9 @@ export function startApp({ root, nodes, start }) {
   root.innerHTML = `
     <div class="tree"></div>
     <section class="keys" aria-labelledby="keys-heading">
-      <h2 id="keys-heading">Keyboard controls</h2>
-      <p>Using VoiceOver? Turn Quick Nav off by pressing the Left and Right arrow keys together.</p>
+      <h2 id="keys-heading">Keys</h2>
       <table>
-        <thead><tr><th scope="col">Key</th><th scope="col">What it does</th></tr></thead>
+        <thead><tr><th scope="col">Key</th><th scope="col">Goes to</th></tr></thead>
         <tbody class="node-keys"></tbody>
         <tbody class="builtin-keys"></tbody>
       </table>
@@ -181,13 +180,6 @@ export function startApp({ root, nodes, start }) {
   let current = null; // { rootId, handle, stopWatching }
   const focusByPage = new Map(); // page's top node id -> last focused position
   let pendingFocusId = null; // node to focus after the next page change
-
-  // Keep keyboard input on the currently selected item.
-  const focusShopping = () => {
-    const item = treeEl.querySelector('[role="treeitem"][tabindex="0"]');
-    if (item) item.focus();
-    return item;
-  };
 
   const pageOf = (id) => index.pageRoots.find((r) => index.pages.get(r).has(id));
 
@@ -232,12 +224,10 @@ export function startApp({ root, nodes, start }) {
 
   const showKeys = () => {
     nodeKeysEl.innerHTML = [...activeBindings()]
-      .map(([key, target]) => {
-        let action = index.byId.get(target).description;
-        if (key === 'Enter') action = 'Open the selected set or action.';
-        if (key === 'Backspace') action = 'Return to the search results.';
-        return `<tr><td>${escapeHtml(keyName(key))}</td><td>${escapeHtml(action)}</td></tr>`;
-      })
+      .map(
+        ([key, target]) =>
+          `<tr><td>${escapeHtml(keyName(key))}</td><td>${escapeHtml(index.byId.get(target).description)}</td></tr>`,
+      )
       .join('');
   };
 
@@ -296,18 +286,6 @@ export function startApp({ root, nodes, start }) {
     },
     true,
   );
-
-  // If focus leaves the list, send navigation keys back to the selected item.
-  document.addEventListener('keydown', (event) => {
-    if (event.target !== document.body) return;
-    if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
-    const keys = ['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Enter', ' ', 'Escape', 'Backspace'];
-    if (!keys.includes(event.key)) return;
-    const item = focusShopping();
-    if (!item) return;
-    event.preventDefault();
-    item.dispatchEvent(new KeyboardEvent('keydown', { key: event.key, bubbles: true, cancelable: true }));
-  });
 
   const pageFromUrl = () => decodeURIComponent(location.hash.replace(/^#\/?/, ''));
   const showPageFromUrl = () => {

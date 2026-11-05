@@ -1,0 +1,57 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f0f0f0; color: #1f1f1f; font-family: Inter, Arial, sans-serif; line-height: 1.4; }
+.wireframe { width: min(640px, calc(100% - 48px)); margin: 24px auto; }
+.step { margin: 0 0 16px; font-size: 14px; font-weight: 700; }
+.product-step, .product-notes { display: none; }
+body:has(.tree [data-nav-id$="-page"]) .results-step,
+body:has(.tree [data-nav-id$="-page"]) .results-notes { display: none; }
+body:has(.tree [data-nav-id$="-page"]) .product-step,
+body:has(.tree [data-nav-id$="-page"]) .product-notes { display: block; }
+main#app { max-width: none; margin: 0; padding: 0; }
+.keys { display: none; }
+#app .tree { border: 1px solid #666; border-radius: 0; background: white; padding: 24px; }
+#app .tree * { box-sizing: border-box; }
+#app .olli-tree, #app .olli-tree-group { list-style: none; padding: 0; margin: 0; font: inherit; }
+#app .olli-tree-group { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+#app .olli-tree-item[aria-expanded="false"] > .olli-tree-group { display: none; }
+#app .olli-tree-item { display: block; padding: 0; margin: 0; border: 0; outline: none; background: transparent; }
+#app .olli-tree-item::before, #app .olli-tree-item::after { display: none; }
+#app .olli-node-label { display: block; padding: 0; font: inherit; color: inherit; }
+#app .olli-focused > .olli-node-label { background: transparent; }
+#app [data-nav-id="results"] > .olli-node-label { font-size: 20px; line-height: 28px; font-weight: 700; }
+#app [data-nav-id="results/search-label"] > .olli-node-label { font-size: 14px; line-height: 20px; font-weight: 700; }
+#app [data-nav-id="results/search-query"] > .olli-node-label { border: 1px solid #4d4d4d; padding: 12px 24px; min-height: 48px; font-size: 16px; }
+#app [data-nav-id="results/result-list"] > .olli-node-label { font-size: 26px; line-height: 36px; font-weight: 700; }
+#app [data-nav-id^="results/result-list/"] { background: #f7f7f7; padding: 16px 24px; cursor: pointer; }
+#app [data-nav-id^="results/result-list/"] > .olli-node-label { white-space: pre-line; font-size: 16px; line-height: 28px; }
+#app [data-nav-id^="results/result-list/"] > .olli-node-label::first-line { font-size: 20px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+#app [data-nav-id^="results/result-list/"][aria-selected="true"] { border: 2px solid #2b6ed4; background: #f0f7ff; }
+#app .olli-tree > [data-nav-id$="-page"] > .olli-node-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#app .olli-tree > [data-nav-id$="-page"] > .olli-tree-group { margin-top: 0; }
+#app [data-nav-id$="-page-back"] > .olli-node-label { font-size: 14px; line-height: 20px; text-decoration: underline; cursor: pointer; }
+#app [data-nav-id$="-page-title"] > .olli-node-label { font-size: 30px; line-height: 42px; font-weight: 700; }
+#app [data-nav-id$="-page-pieces"] > .olli-node-label { font-size: 16px; line-height: 22px; }
+#app [data-nav-id$="-page-price"] > .olli-node-label { font-size: 26px; line-height: 36px; font-weight: 700; }
+#app [data-nav-id$="-page-description"] > .olli-node-label,
+#app [data-nav-id$="-page-shipping"] > .olli-node-label,
+#app [data-nav-id$="-page-reviews"] > .olli-node-label { font-size: 20px; line-height: 28px; font-weight: 700; cursor: pointer; }
+#app [data-nav-id$="-page-description"] > .olli-node-label::after,
+#app [data-nav-id$="-page-shipping"] > .olli-node-label::after,
+#app [data-nav-id$="-page-reviews"] > .olli-node-label::after { content: " ▸"; font-size: 14px; }
+#app [data-nav-id$="-page-description"][aria-expanded="true"] > .olli-node-label::after,
+#app [data-nav-id$="-page-shipping"][aria-expanded="true"] > .olli-node-label::after,
+#app [data-nav-id$="-page-reviews"][aria-expanded="true"] > .olli-node-label::after { content: " ▾"; }
+#app [data-nav-id$="-page-description"] .olli-node-label,
+#app [data-nav-id$="-page-shipping"] .olli-node-label,
+#app [data-nav-id$="-page-reviews"] .olli-node-label { white-space: normal; }
+#app [data-nav-id$="-page-bag"] > .olli-node-label { display: inline-block; border: 1px solid #767676; border-radius: 8px; background: #e3e3e3; padding: 10px 12px; min-height: 40px; font-size: 16px; line-height: 18px; cursor: pointer; }
+#app .olli-tree-item:focus > .olli-node-label { outline: 2px solid #2b6ed4; outline-offset: 3px; }
+#app [data-nav-id^="results/result-list/"]:focus > .olli-node-label { outline: none; }
+.notes { margin-top: 16px; padding: 24px; background: #e6e6e6; font-size: 14px; }
+.notes h2 { margin: 0 0 12px; font-size: 18px; line-height: 25px; }
+.notes p { margin: 12px 0 0; line-height: 20px; }
+@media (max-width: 500px) {
+  .wireframe { width: calc(100% - 24px); margin: 12px auto; }
+  #app .tree, .notes { padding: 20px; }
+  #app [data-nav-id^="results/result-list/"] { padding: 16px; }
+}

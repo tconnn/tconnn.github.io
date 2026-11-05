@@ -20,11 +20,6 @@ main {
   border-radius: 4px;
   padding: 0.5rem;
 }
-.tree [role="treeitem"]:focus {
-  outline: 3px solid #165db5;
-  outline-offset: 2px;
-  background: #eaf2ff;
-}
 .keys table {
   border-collapse: collapse;
 }

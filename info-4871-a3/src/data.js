@@ -16,7 +16,7 @@
 // =============================================================================
 
 export const search = {
-  query: 'LEGO Botanicals',
+  query: 'Botanicals',
 };
 
 // These three sets are from LEGO's US website.

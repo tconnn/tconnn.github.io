@@ -20,12 +20,14 @@ export function productNodes(p) {
   // EDIT BELOW THIS LINE
   // ===========================================================================
 
-  // Each product page uses the same groups.
   const page = {
     id: `${p.id}-page`,
-    description: `${p.title}. Set ${p.setNumber}. $${p.price}. ${p.pieces} pieces. Ages ${p.minimumAge} and up. Press Down for sections. Press Backspace to return to results.`,
+    description: `${p.title}. $${p.price}. ${p.pieces} pieces.`,
     children: [
       `${p.id}-page-back`,
+      `${p.id}-page-title`,
+      `${p.id}-page-pieces`,
+      `${p.id}-page-price`,
       `${p.id}-page-description`,
       `${p.id}-page-shipping`,
       `${p.id}-page-reviews`,
@@ -37,62 +39,59 @@ export function productNodes(p) {
 
   nodes.push({
     id: `${p.id}-page-back`,
-    description: 'Back to results. Press Enter.',
+    description: '← Back to results',
     navigation: { Enter: p.id },
   });
+  nodes.push({ id: `${p.id}-page-title`, description: p.title });
+  nodes.push({ id: `${p.id}-page-pieces`, description: `${p.pieces} pieces` });
+  nodes.push({ id: `${p.id}-page-price`, description: `$${p.price}` });
 
   const about = {
     id: `${p.id}-page-description`,
-    description: 'Description. Press Down to read.',
+    description: 'Description',
     children: [],
   };
   nodes.push(about);
 
-  let lineCount = 1;
-  // Each description line becomes an item someone can move to.
+  let lineNumber = 1;
   for (const line of p.description) {
-    const lineId = `${p.id}-page-description-${lineCount}`;
+    const lineId = `${p.id}-page-description-${lineNumber}`;
     about.children.push(lineId);
     nodes.push({ id: lineId, description: line });
-    lineCount = lineCount + 1;
+    lineNumber = lineNumber + 1;
   }
 
   nodes.push({
     id: `${p.id}-page-shipping`,
-    description: 'Shipping information. Press Down to read.',
+    description: 'Shipping information',
     children: [`${p.id}-page-shipping-details`],
   });
-  nodes.push({
-    id: `${p.id}-page-shipping-details`,
-    description: p.shipping,
-  });
+  nodes.push({ id: `${p.id}-page-shipping-details`, description: p.shipping });
 
   const reviews = {
     id: `${p.id}-page-reviews`,
-    description: 'Reviews. Sample reviews for this prototype. Press Down to read.',
+    description: 'Reviews',
     children: [],
   };
   nodes.push(reviews);
 
-  let reviewCount = 1;
-  // Each sample review gets its own item too.
+  let reviewNumber = 1;
   for (const review of p.reviews) {
-    const reviewId = `${p.id}-page-review-${reviewCount}`;
+    const reviewId = `${p.id}-page-review-${reviewNumber}`;
     reviews.children.push(reviewId);
     nodes.push({ id: reviewId, description: review });
-    reviewCount = reviewCount + 1;
+    reviewNumber = reviewNumber + 1;
   }
 
-  // This only demonstrates the bag confirmation.
   nodes.push({
     id: `${p.id}-page-bag`,
-    description: 'Add to bag. Press Enter.',
+    description: 'Add to bag',
     children: [`${p.id}-page-confirmation`],
     navigation: { Enter: `${p.id}-page-confirmation` },
   });
   nodes.push({
     id: `${p.id}-page-confirmation`,
-    description: `Demo only. ${p.title} added to a sample bag. Press Up to go back.`,
+    description: `${p.title} added to a sample bag. This is a prototype confirmation.`,
   });
 
   // ===========================================================================

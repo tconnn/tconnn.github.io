@@ -5,11 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:," />
     <title>Shopping prototype</title>
-    <script type="module" crossorigin src="/lego-prototype/assets/index-BDE3vkfF.js"></script>
-    <link rel="stylesheet" crossorigin href="/lego-prototype/assets/index-B0qs2Fun.css">
-  </head>
+    <script type="module" crossorigin src="/lego-prototype/assets/index-BOxZ0ucx.js"></script>
+    <link rel="stylesheet" crossorigin href="/lego-prototype/assets/index-CwIZ1hFx.css">
+  <link rel="stylesheet" href="/lego-prototype/wireframe.css">
+</head>
   <body>
-    <main id="app"></main>
+    <div class="wireframe">
+<p class="step results-step">01 / SEARCH RESULTS</p>
+<p class="step product-step">02 / PRODUCT DETAILS</p>
+<main id="app"></main>
+<aside class="notes">
+<h2>Screen reader notes</h2>
+<div class="results-notes">
+<p>“Result 1 of 3. Mini Orchid. $29.99. 274 pieces.”</p>
+<p>↑/↓ move between products. Enter opens a product.</p>
+<p>Keep keyboard focus visible.</p>
+</div>
+<div class="product-notes">
+<p>“Mini Orchid. $29.99. 274 pieces.”</p>
+<p>“Description, collapsed. Press Enter to expand.”</p>
+<p>↑/↓ move between sections. Enter selects. Back to results returns.</p>
+</div>
+</aside>
+</div>
     <script>
       // Shows JavaScript mistakes, such as a missing comma, on the page
       // instead of leaving it blank.
@@ -38,5 +56,6 @@
           '<p>Fix the mistake and save the file. The page reloads on its own.</p>';
       });
     </script>
-  </body>
+  <script src="/lego-prototype/wireframe.js"></script>
+</body>
 </html>

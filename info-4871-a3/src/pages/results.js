@@ -28,22 +28,30 @@ export function resultsNodes() {
 
   const resultsPage = {
     id: 'results',
-    description: `Search results for ${search.query}. ${products.length} sets. Press Down to start. Use Left and Right to move between sets.`,
+    description: 'LEGO / Botanicals',
+    children: ['search-label', 'search-query', 'result-list'],
+  };
+
+  const list = {
+    id: 'result-list',
+    description: `${products.length} results`,
     children: [],
   };
-  nodes.push(resultsPage);
 
-  let resultNumber = 1;
-  // Add one result for each LEGO set in data.js.
+  // Start on the first set so all three cards are visible.
   for (const p of products) {
-    resultsPage.children.push(p.id);
+    list.children.push(p.id);
     nodes.push({
       id: p.id,
-      description: `Result ${resultNumber} of ${products.length}. ${p.title}. $${p.price}. ${p.pieces} pieces. Ages ${p.minimumAge} and up. Press Enter for details.`,
-      navigation: { Enter: `${p.id}-page` },
+      description: `${p.title} →\n$${p.price} • ${p.pieces} pieces`,
+      navigation: { Enter: `${p.id}-page-title` },
     });
-    resultNumber = resultNumber + 1;
   }
+
+  nodes.push(resultsPage);
+  nodes.push({ id: 'search-label', description: 'Search products' });
+  nodes.push({ id: 'search-query', description: search.query });
+  nodes.push(list);
 
   // ===========================================================================
   // EDIT ABOVE THIS LINE
