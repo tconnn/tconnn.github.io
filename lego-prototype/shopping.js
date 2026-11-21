@@ -10,6 +10,7 @@ function renderResults(moveFocus) {
   app.innerHTML = `
     <h1 tabindex="-1">Botanicals results</h1>
     <p>${products.length} sets</p>
+    <p>Use Left and Right Arrow to browse. Press Down Arrow to open a set.</p>
     <ul class="results" role="list">
       ${products.map(product => `
         <li>
@@ -30,7 +31,7 @@ function disclosure(title, paragraphs) {
   return `
     <details>
       <summary>${title}</summary>
-      <div class="section-content">${paragraphs.map(text => `<p>${text}</p>`).join("")}</div>
+      <div class="section-content">${paragraphs.map(text => `<p tabindex="-1">${text}</p>`).join("")}</div>
     </details>`;
 }
 
@@ -39,7 +40,8 @@ function renderProduct(product, moveFocus) {
   document.title = `${product.title} | LEGO Shopping Prototype`;
   app.innerHTML = `
     <h1 tabindex="-1">${product.title}</h1>
-    <p>Set ${product.setNumber}. ${productFacts(product)}</p>
+    <p>Use Up and Down Arrow to move, Right Arrow to open, and Left Arrow to go back.</p>
+    <p class="set-facts" tabindex="-1">Set ${product.setNumber}. ${productFacts(product)}</p>
     <a class="back" href="#/results">Back to results</a>
     ${disclosure("Description", product.description)}
     ${disclosure("Shipping information", [product.shipping])}
@@ -58,20 +60,76 @@ function render(moveFocus) {
   else renderResults(moveFocus);
 }
 
-app.addEventListener("keydown", event => {
-  if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-  const links = [...app.querySelectorAll(".results a")];
-  const index = links.indexOf(document.activeElement);
-  if (index === -1) return;
+function browseResults(key, links, active) {
+  const index = links.indexOf(active);
+  if (index === -1) {
+    links[key === "End" ? links.length - 1 : 0].focus();
+    return;
+  }
+
   const targets = {
     ArrowLeft: index - 1,
     ArrowRight: index + 1,
     Home: 0,
     End: links.length - 1
   };
-  if (!Object.hasOwn(targets, event.key)) return;
+  if (key === "ArrowDown") links[index].click();
+  else links[targets[key]]?.focus();
+}
+
+function browseProduct(key, active) {
+  const controls = [...app.querySelectorAll(
+    "h1, .set-facts, .back, summary, details[open] .section-content p, #add-to-bag"
+  )];
+  const index = controls.indexOf(active);
+  const section = active.closest("details");
+
+  if (key === "ArrowLeft") {
+    if (section?.open) {
+      section.open = false;
+      section.querySelector("summary").focus();
+    } else {
+      app.querySelector(".back").click();
+    }
+    return;
+  }
+
+  if (key === "ArrowRight") {
+    if (active.matches("summary")) {
+      section.open = true;
+      section.querySelector(".section-content p").focus();
+    } else if (active.matches(".back, #add-to-bag")) {
+      active.click();
+    } else if (index <= 0) {
+      controls[1].focus();
+    }
+    return;
+  }
+
+  const targets = {
+    ArrowUp: index - 1,
+    ArrowDown: index + 1,
+    Home: 0,
+    End: controls.length - 1
+  };
+  controls[targets[key]]?.focus();
+}
+
+const navigationKeys = new Set([
+  "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End"
+]);
+
+document.addEventListener("keydown", event => {
+  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+  if (!navigationKeys.has(event.key)) return;
+
+  const active = document.activeElement;
+  if (active !== document.body && !app.contains(active)) return;
+
   event.preventDefault();
-  links[targets[event.key]]?.focus();
+  const links = [...app.querySelectorAll(".results a")];
+  if (links.length) browseResults(event.key, links, active);
+  else browseProduct(event.key, active);
 });
 
 window.addEventListener("hashchange", () => render(true));
