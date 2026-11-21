@@ -1,0 +1,30 @@
+:root {
+  color-scheme: light;
+  font: 100%/1.55 system-ui, sans-serif;
+  color: #192d22;
+  background: #f2f6f2;
+}
+body { margin: 0; }
+header { background: #173d2e; color: white; padding: 1rem 0; font-weight: 700; }
+header span { margin-inline-start: .75rem; font-size: .875rem; font-weight: 400; }
+.shell { width: min(42rem, calc(100% - 2rem)); margin-inline: auto; }
+main { padding-block: 2rem; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.65rem); margin: 0 0 .25rem; line-height: 1.2; }
+p { margin: .65rem 0; }
+a { color: #174c36; }
+.results { list-style: none; padding: 0; margin: 1.25rem 0 0; }
+.results li + li { margin-top: .65rem; }
+.results a, details { display: block; background: white; border: 1px solid #9eb3a7; border-radius: .65rem; }
+.results a { padding: .85rem 1rem; }
+.results strong { display: block; font-size: 1.12rem; text-decoration: underline; }
+.results a { text-decoration: none; }
+.results small { display: block; color: #31483c; font-size: .95rem; }
+.results a:hover, summary:hover { background: #e3eee6; }
+:focus-visible { outline: 3px solid #1d5db3; outline-offset: 3px; }
+.back { display: inline-block; margin-bottom: 1rem; }
+details { margin-block: .6rem; }
+summary { display: block; cursor: pointer; font-weight: 650; border-radius: .6rem; padding: .75rem 1rem; }
+summary::-webkit-details-marker { display: none; }
+details .section-content { padding: 0 1rem .65rem; }
+button { font: inherit; font-weight: 650; border: 0; border-radius: .5rem; padding: .65rem 1rem; background: #173d2e; color: white; cursor: pointer; margin-top: .75rem; }
+#bag-status { margin-bottom: 0; }
