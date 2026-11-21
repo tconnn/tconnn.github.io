@@ -1,64 +1,15 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="data:," />
-    <title>Shopping prototype</title>
-    <script>
-      if (location.hash === '#/results') {
-        history.replaceState(null, '', location.pathname + location.search);
-      }
-    </script>
-    <script type="module" crossorigin src="/lego-prototype/assets/index-DHLCCiFb.js"></script>
-    <link rel="stylesheet" crossorigin href="/lego-prototype/assets/index-CwIZ1hFx.css">
-    <link rel="stylesheet" href="/lego-prototype/wireframe.css?v=4">
-  </head>
-  <body>
-    <div class="wireframe">
-      <p class="step results-step">01 / SEARCH RESULTS</p>
-      <p class="step product-step">02 / PRODUCT DETAILS</p>
-      <main id="app"></main>
-      <aside class="notes">
-        <h2>Screen reader notes</h2>
-        <p>The screen reader reads each set's name, price, and piece count.</p>
-        <p>Down enters a group. Up leaves it. Left/Right move between items.</p>
-        <div class="results-notes">
-          <p>Click a set or press Enter to open its product page.</p>
-        </div>
-        <div class="product-notes">
-          <p>Click a section or press Enter to read its details. Backspace returns to results.</p>
-        </div>
-      </aside>
-    </div>
-    <script>
-      // Shows JavaScript mistakes, such as a missing comma, on the page
-      // instead of leaving it blank.
-      window.addEventListener('error', function (e) {
-        var app = document.getElementById('app');
-        if (!app) return;
-        var esc = function (s) {
-          return String(s).replace(/[&<>"]/g, function (c) {
-            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
-          });
-        };
-        var file = e.filename ? new URL(e.filename).pathname.replace(/^\//, '') : '';
-        var where = file ? file + (e.lineno ? ', line ' + e.lineno : '') : 'one of your files';
-        var syntax = /Unexpected|Invalid or unexpected token|missing/.test(e.message);
-        var badField = /undefined|null|not iterable|is not a function/.test(e.message);
-        app.innerHTML =
-          '<h1>There is a mistake in your code</h1>' +
-          '<p>Where: ' + esc(where) + '</p>' +
-          '<pre class="error">' + esc(e.message) + '</pre>' +
-          (syntax
-            ? '<p>This often means a missing comma, quote mark, or bracket on that line or the line above it.</p>'
-            : '') +
-          (badField
-            ? '<p>This often means a field name is misspelled, or a product in src/data.js is missing that field. Check the spelling against src/data.js.</p>'
-            : '') +
-          '<p>Fix the mistake and save the file. The page reloads on its own.</p>';
-      });
-    </script>
-    <script src="/lego-prototype/mouse.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LEGO Botanicals</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="products.js" defer></script>
+  <script src="shopping.js" defer></script>
+</head>
+<body>
+  <header><div class="shell">LEGO Botanicals <span>Shopping prototype</span></div></header>
+  <main class="shell" id="app"></main>
+</body>
 </html>
